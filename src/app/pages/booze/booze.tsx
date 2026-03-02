@@ -1,4 +1,4 @@
-use client"
+"use client"
 
 import { useState, useEffect, useRef } from "react"
 
@@ -106,4 +106,104 @@ const bottles = [
   { name: "Kopparberg Pear Cider", style: "Swedish Cider", desc: "Sweet, fruity, refreshing. Perfect for the patio.", abv: "4.5%" },
   { name: "Original Sin Cider", style: "Hard Cider", desc: "Hudson Valley apples. Crisp and dry.", abv: "5.0%" },
   { name: "Blue Point Toasted Lager", style: "American Amber Lager", desc: "Long Island brewed. Warm and malty.", abv: "5.5%" },
+]
+
+const bourbons = [
+  {
+    name: "Maker's Mark",
+    style: "Wheated Bourbon",
+    desc: "Soft red winter wheat instead of rye. Smooth, caramel, and approachable.",
+    region: "Loretto, KY",
+    proof: "90",
+    img: "https://images.pexels.com/photos/4021983/pexels-photo-4021983.jpeg?auto=compress&cs=tinysrgb&w=600",
+  },
+  {
+    name: "Wild Turkey 101",
+    style: "Kentucky Straight Bourbon",
+    desc: "High rye, high proof, bold character. The bartender's choice.",
+    region: "Lawrenceburg, KY",
+    proof: "101",
+    img: "https://images.pexels.com/photos/3407777/pexels-photo-3407777.jpeg?auto=compress&cs=tinysrgb&w=600",
+  },
+  {
+    name: "Jim Beam",
+    style: "Kentucky Straight Bourbon",
+    desc: "The world's best-selling bourbon. Clean, sweet corn, easy.",
+    region: "Clermont, KY",
+    proof: "80",
+    img: "https://images.pexels.com/photos/4021983/pexels-photo-4021983.jpeg?auto=compress&cs=tinysrgb&w=600",
+  },
+  {
+    name: "Knob Creek",
+    style: "Small Batch Bourbon",
+    desc: "Full-bodied, aged 9 years. Oak, vanilla, and a long finish.",
+    region: "Clermont, KY",
+    proof: "100",
+    img: "https://images.pexels.com/photos/3407777/pexels-photo-3407777.jpeg?auto=compress&cs=tinysrgb&w=600",
+  },
+  {
+    name: "Buffalo Trace",
+    style: "Kentucky Straight Bourbon",
+    desc: "Toffee, vanilla, and a hint of spice. One of America's most respected distilleries.",
+    region: "Frankfort, KY",
+    proof: "90",
+    img: "https://images.pexels.com/photos/4021983/pexels-photo-4021983.jpeg?auto=compress&cs=tinysrgb&w=600",
+  },
+  {
+    name: "Bulleit Bourbon",
+    style: "High Rye Bourbon",
+    desc: "Spicy rye forward, oaky, and dry. The frontier whiskey.",
+    region: "Lawrenceburg, KY",
+    proof: "90",
+    img: "https://images.pexels.com/photos/3407777/pexels-photo-3407777.jpeg?auto=compress&cs=tinysrgb&w=600",
+  },
+]
+
+const cocktails = [
+  {
+    name: "Dark & Stormy",
+    desc: "Gosling's Black Seal rum, Fever-Tree ginger beer, fresh lime. A perfect storm.",
+    img: "https://images.pexels.com/photos/3407777/pexels-photo-3407777.jpeg?auto=compress&cs=tinysrgb&w=600",
+    color: "#c8832a",
+  },
+  {
+    name: "Moscow Mule",
+    desc: "Vodka, ginger beer, fresh lime juice. Served in a copper mug the old-fashioned way.",
+    img: "https://images.pexels.com/photos/4021983/pexels-photo-4021983.jpeg?auto=compress&cs=tinysrgb&w=600",
+    color: "#88b840",
+  },
+  {
+    name: "Coffee Boy",
+    desc: "House special. Espresso vodka, Kahlúa, and something secret. Ask the bartender.",
+    img: "https://images.pexels.com/photos/3407777/pexels-photo-3407777.jpeg?auto=compress&cs=tinysrgb&w=600",
+    color: "#6040a0",
+  },
+  {
+    name: "Anti-Oxidant Martini",
+    desc: "Blueberry vodka, pomegranate juice, a dash of elderflower. Good for your soul.",
+    img: "https://images.pexels.com/photos/4021983/pexels-photo-4021983.jpeg?auto=compress&cs=tinysrgb&w=600",
+    color: "#8030c0",
+  },
+  {
+    name: "The Germain Threat",
+    desc: "St. Germain elderflower liqueur, prosecco, soda. Floral and dangerously easy.",
+    img: "https://images.pexels.com/photos/3407777/pexels-photo-3407777.jpeg?auto=compress&cs=tinysrgb&w=600",
+    color: "#d0b030",
+  },
+  {
+    name: "Arnold Palmer",
+    desc: "Half iced tea, half lemonade — with vodka if you want to make Arnold proud.",
+    img: "https://images.pexels.com/photos/4021983/pexels-photo-4021983.jpeg?auto=compress&cs=tinysrgb&w=600",
+    color: "#d08820",
+  },
+]
+
+const wines = [
+  { name: "Cadonini Pinot Grigio", style: "White", region: "Veneto, Italy", desc: "Light, crisp, and dry. Pear, green apple, hint of almond." },
+  { name: "Carta Vieja Sauvignon Blanc", style: "White", region: "Valle Central, Chile", desc: "Grassy, citrusy, and refreshing. A crowd-pleaser." },
+  { name: "Red Bicyclette Chardonnay", style: "White", region: "Languedoc, France", desc: "Unoaked, clean, and bright with stone fruit notes." },
+  { name: "Massoferrato Rosato", style: "Rosé", region: "Veneto, Italy", desc: "Dry rosé, strawberry and rose petal. Perfect for the patio." },
+  { name: "Pepperwood Grove Pinot Noir", style: "Red", region: "California", desc: "Silky, light-bodied. Cherry, raspberry, earthy finish." },
+  { name: "Cudgee Creek Shiraz", style: "Red", region: "South Australia", desc: "Bold, peppery, and rich. Dark fruit and a long finish." },
+  { name: "Grayson Cellars Cabernet Sauvignon", style: "Red", region: "California", desc: "Full-bodied, blackcurrant and cedar. Classic Cab." },
 ]
