@@ -2,11 +2,450 @@
 @tailwind components;
 @tailwind utilities;
 
-html, body {
-  padding: 0;
-  margin: 0;
+/* ─────────────────────────────────────────────
+   FONTS
+───────────────────────────────────────────── */
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Raleway:wght@300;400;500;600&display=swap');
+
+/* ─────────────────────────────────────────────
+   DESIGN TOKENS
+───────────────────────────────────────────── */
+:root {
+  /* Core palette — deep night with warmth bleeding through */
+  --bg-void:        #04020e;   /* deepest dark, near-black with violet */
+  --bg-deep:        #07041a;   /* base page background */
+  --bg-surface:     #0d0820;   /* cards, panels */
+  --bg-raised:      #130c2a;   /* elevated surfaces */
+  --bg-overlay:     rgba(13, 8, 32, 0.88);
+
+  /* Purple family — the dream layer */
+  --purple-dim:     rgba(120, 60, 255, 0.08);
+  --purple-soft:    rgba(140, 80, 255, 0.18);
+  --purple-mid:     rgba(150, 90, 255, 0.45);
+  --purple-bright:  rgba(175, 115, 255, 0.85);
+  --purple-pure:    #a06fff;
+
+  /* Amber/gold family — the warmth, the bar light */
+  --amber-ember:    rgba(255, 150, 40, 0.08);
+  --amber-soft:     rgba(255, 170, 60, 0.22);
+  --amber-mid:      rgba(255, 185, 75, 0.55);
+  --amber-bright:   rgba(255, 200, 100, 0.88);
+  --amber-pure:     #ffb84a;
+
+  /* Text scale */
+  --text-primary:   #f0eaff;   /* warm white with violet tint */
+  --text-secondary: rgba(210, 185, 255, 0.72);
+  --text-muted:     rgba(170, 140, 220, 0.48);
+  --text-ghost:     rgba(140, 110, 200, 0.32);
+  --text-warm:      rgba(255, 205, 110, 0.82); /* amber text for accents */
+
+  /* Borders */
+  --border-subtle:  rgba(120, 70, 255, 0.1);
+  --border-soft:    rgba(140, 90, 255, 0.18);
+  --border-warm:    rgba(255, 180, 70, 0.2);
+
+  /* Glows */
+  --glow-purple:    0 0 24px rgba(130, 70, 255, 0.25);
+  --glow-amber:     0 0 24px rgba(255, 170, 50, 0.2);
+  --glow-purple-lg: 0 0 60px rgba(120, 60, 255, 0.18);
+  --glow-amber-lg:  0 0 60px rgba(255, 150, 40, 0.14);
+
+  /* Typography */
+  --font-display:  'Playfair Display', Georgia, serif;
+  --font-body:     'Raleway', system-ui, sans-serif;
+
+  /* Spacing rhythm */
+  --section-gap: clamp(5rem, 10vw, 9rem);
+
+  /* Easing curves */
+  --ease-out-expo:  cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out:    cubic-bezier(0.4, 0, 0.2, 1);
+  --ease-spring:    cubic-bezier(0.34, 1.56, 0.64, 1);
+
+  /* Transition speeds */
+  --t-fast:   150ms;
+  --t-mid:    300ms;
+  --t-slow:   500ms;
 }
 
-* {
+/* ─────────────────────────────────────────────
+   RESET & BASE
+───────────────────────────────────────────── */
+*, *::before, *::after {
   box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--bg-deep);
+  color: var(--text-primary);
+  line-height: 1.7;
+  min-height: 100vh;
+  overflow-x: hidden;
+  position: relative;
+}
+
+/* ─────────────────────────────────────────────
+   AMBIENT BACKGROUND ATMOSPHERE
+   A subtle, always-present dreamlike depth
+───────────────────────────────────────────── */
+body::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 80% 60% at 15% 0%,   rgba(100, 40, 220, 0.09) 0%, transparent 60%),
+    radial-gradient(ellipse 60% 50% at 85% 100%,  rgba(210, 110, 30, 0.07) 0%, transparent 60%),
+    radial-gradient(ellipse 50% 70% at 50% 50%,   rgba(80, 20, 180, 0.04) 0%, transparent 80%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Grain texture overlay — like looking through amber glass */
+body::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='1'/%3E%3C/svg%3E");
+  background-repeat: repeat;
+  background-size: 180px 180px;
+  opacity: 0.028;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* All content sits above the atmosphere */
+#__next,
+main,
+header,
+footer,
+section,
+nav {
+  position: relative;
+  z-index: 1;
+}
+
+/* ─────────────────────────────────────────────
+   TYPOGRAPHY
+───────────────────────────────────────────── */
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-display);
+  color: var(--text-primary);
+  line-height: 1.15;
+  letter-spacing: 0.01em;
+  font-weight: 700;
+}
+
+h1 { font-size: clamp(2.4rem, 6vw, 5rem); }
+h2 { font-size: clamp(1.9rem, 4vw, 3.2rem); }
+h3 { font-size: clamp(1.4rem, 3vw, 2.2rem); }
+h4 { font-size: clamp(1.1rem, 2vw, 1.5rem); }
+h5 { font-size: 1.15rem; }
+h6 { font-size: 1rem; }
+
+p {
+  font-size: 1rem;
+  color: var(--text-secondary);
+  line-height: 1.75;
+  font-weight: 300;
+}
+
+/* Small eyebrow labels */
+.eyebrow {
+  font-family: var(--font-body);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--purple-mid);
+}
+
+/* Italic callouts — Playfair italics are gorgeous */
+em, .italic-accent {
+  font-family: var(--font-display);
+  font-style: italic;
+  color: var(--text-warm);
+}
+
+strong {
+  font-weight: 600;
+  color: var(--text-primary);
+}
+
+/* ─────────────────────────────────────────────
+   LINKS
+───────────────────────────────────────────── */
+a {
+  color: var(--purple-bright);
+  text-decoration: none;
+  transition: color var(--t-mid) var(--ease-in-out);
+}
+
+a:hover {
+  color: var(--text-primary);
+}
+
+a:focus-visible {
+  outline: 1.5px solid var(--purple-mid);
+  outline-offset: 3px;
+  border-radius: 3px;
+}
+
+/* ─────────────────────────────────────────────
+   SELECTION
+───────────────────────────────────────────── */
+::selection {
+  background: rgba(130, 70, 255, 0.28);
+  color: #fff;
+}
+
+::-moz-selection {
+  background: rgba(130, 70, 255, 0.28);
+  color: #fff;
+}
+
+/* ─────────────────────────────────────────────
+   SCROLLBAR — subtle, on-brand
+───────────────────────────────────────────── */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--bg-void);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(120, 70, 220, 0.25);
+  border-radius: 100px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(150, 100, 255, 0.4);
+}
+
+/* ─────────────────────────────────────────────
+   LAYOUT UTILITIES
+───────────────────────────────────────────── */
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin-inline: auto;
+  padding-inline: clamp(1.25rem, 4vw, 2rem);
+}
+
+.section {
+  padding-block: var(--section-gap);
+}
+
+/* ─────────────────────────────────────────────
+   SURFACE COMPONENTS
+───────────────────────────────────────────── */
+
+/* Glass card — the signature component */
+.card {
+  background: rgba(13, 8, 32, 0.6);
+  border: 1px solid var(--border-subtle);
+  border-radius: 12px;
+  backdrop-filter: blur(16px) saturate(140%);
+  -webkit-backdrop-filter: blur(16px) saturate(140%);
+  transition: border-color var(--t-mid) var(--ease-in-out),
+              box-shadow var(--t-mid) var(--ease-in-out);
+}
+
+.card:hover {
+  border-color: var(--border-soft);
+  box-shadow: var(--glow-purple);
+}
+
+/* Warm card variant */
+.card-warm {
+  border-color: var(--border-warm);
+}
+
+.card-warm:hover {
+  border-color: rgba(255, 190, 80, 0.35);
+  box-shadow: var(--glow-amber);
+}
+
+/* ─────────────────────────────────────────────
+   BUTTONS
+───────────────────────────────────────────── */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  font-family: var(--font-body);
+  font-size: 0.6875rem;
+  font-weight: 600;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  border-radius: 100px;
+  padding: 0.65rem 1.5rem;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all var(--t-mid) var(--ease-in-out);
+  border: none;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Primary — amber warm glow */
+.btn-primary {
+  background: linear-gradient(135deg, rgba(220, 140, 30, 0.9), rgba(255, 195, 80, 0.85));
+  color: #0a0515;
+  box-shadow: 0 4px 20px rgba(220, 140, 30, 0.25);
+}
+
+.btn-primary:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 6px 28px rgba(220, 140, 30, 0.38);
+  color: #0a0515;
+}
+
+.btn-primary:active {
+  transform: translateY(0);
+}
+
+/* Ghost — purple outline */
+.btn-ghost {
+  background: transparent;
+  color: var(--purple-bright);
+  border: 1px solid var(--border-soft);
+}
+
+.btn-ghost:hover {
+  background: var(--purple-dim);
+  border-color: var(--purple-mid);
+  color: var(--text-primary);
+  box-shadow: var(--glow-purple);
+}
+
+/* Ghost warm variant */
+.btn-ghost-warm {
+  background: transparent;
+  color: var(--amber-bright);
+  border: 1px solid var(--border-warm);
+}
+
+.btn-ghost-warm:hover {
+  background: var(--amber-ember);
+  border-color: var(--amber-mid);
+  color: #fff;
+  box-shadow: var(--glow-amber);
+}
+
+/* ─────────────────────────────────────────────
+   DIVIDERS
+───────────────────────────────────────────── */
+.divider {
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    var(--border-subtle) 20%,
+    var(--border-subtle) 80%,
+    transparent 100%
+  );
+  border: none;
+}
+
+.divider-warm {
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    var(--border-warm) 20%,
+    var(--border-warm) 80%,
+    transparent 100%
+  );
+}
+
+/* ─────────────────────────────────────────────
+   GLOW ACCENTS — decorative blobs
+───────────────────────────────────────────── */
+.glow-blob {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  filter: blur(60px);
+  opacity: 0.5;
+}
+
+.glow-blob-purple {
+  background: rgba(110, 50, 240, 0.22);
+}
+
+.glow-blob-amber {
+  background: rgba(220, 130, 30, 0.18);
+}
+
+/* ─────────────────────────────────────────────
+   GRADIENT TEXT
+───────────────────────────────────────────── */
+.text-gradient {
+  background: linear-gradient(135deg, var(--purple-pure) 0%, var(--amber-pure) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.text-gradient-warm {
+  background: linear-gradient(135deg, #ffb84a 0%, #ff8c42 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ─────────────────────────────────────────────
+   FOCUS & ACCESSIBILITY
+───────────────────────────────────────────── */
+:focus {
+  outline: none;
+}
+
+:focus-visible {
+  outline: 1.5px solid var(--purple-mid);
+  outline-offset: 3px;
+  border-radius: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/* ─────────────────────────────────────────────
+   IMAGES & MEDIA
+───────────────────────────────────────────── */
+img, video {
+  max-width: 100%;
+  display: block;
+}
+
+/* ─────────────────────────────────────────────
+   TAILWIND COMPONENT LAYER OVERRIDES
+───────────────────────────────────────────── */
+@layer base {
+  body {
+    @apply antialiased;
+  }
 }
