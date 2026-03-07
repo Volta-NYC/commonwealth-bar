@@ -9,7 +9,7 @@ const navLinks = [
   { label: "Food", href: "/pages/food" },
   { label: "Hours & Contact", href: "/pages/contact" },
   { label: "Jukebox", href: "/pages/jukebox" },
-]
+].filter(link => link.label && link.href);
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
