@@ -66,7 +66,7 @@ export default function HomePage() {
 
   useEffect(() => {
     const observer = new IntersectionObserver(
-      (entries) => { entries.forEach((e) => { if (e.isIntersecting) setVisibleSections((p) => new Set([...p, e.target.id])) }) },
+      (entries) => { entries.forEach((e) => { if (e.isIntersecting) setVisibleSections((p) => new Set([...Array.from(p), e.target.id])) }) },
       { threshold: 0.10 }
     )
     sectionRefs.current.forEach((el) => observer.observe(el))
