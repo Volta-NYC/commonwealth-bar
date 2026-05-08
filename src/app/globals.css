@@ -1,159 +1,152 @@
 /* ─────────────────────────────────────────────────────────────────────────
    @import must precede all other rules
 ───────────────────────────────────────────────────────────────────────── */
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600;1,700&family=DM+Sans:wght@300;400;500&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Abril+Fatface&family=Caveat:wght@500;700&family=Lora:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500;1,600&family=Special+Elite&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 /* ═════════════════════════════════════════════════════════════════════════
-   DESIGN TOKENS
+   DESIGN TOKENS — Vintage Americana / printed bourbon-label
    ─
-   Built directly from the image:
-   — The walls are deep brick red, almost maroon in the shadows
-   — The light sources are molten copper-orange and hot amber
-   — The darks are warm brown-black, never cool charcoal
-   — The only "neutral" is the color of old wood soaked in spilled whiskey
-   — There are no cool tones. None.
+   Cream paper, espresso ink, oxblood red, whiskey gold.
+   No glow. No gradients. Ink on paper. Like a saloon poster
+   that's been tacked to a wall for thirty years.
 ═════════════════════════════════════════════════════════════════════════ */
 :root {
 
-  /* ── Backgrounds ──────────────────────────────────────────────────────
-     Pulled from the darkest corners of that image.
-     These are WARM darks — brown-black, not charcoal-black.
-  ────────────────────────────────────────────────────────────────────── */
-  --bg-pit:       #0a0302;   /* the space under the bar, absolute dark */
-  --bg-base:      #120604;   /* page bg — like worn mahogany in shadow */
-  --bg-surface:   #1c0a05;   /* cards — dark brick, unlit corner */
-  --bg-raised:    #260d06;   /* elevated — the bar top in dim light */
-  --bg-highlight: #341208;   /* hover — caught by a candle */
-  --bg-overlay:   rgba(14, 5, 2, 0.92);
+  /* ── Paper / Cream ─────────────────────────────────────────────────── */
+  --paper-bright: #f3e8cf;   /* freshly printed corner */
+  --paper-base:   #ecdfc1;   /* main page background */
+  --paper-warm:   #e3d3b0;   /* card / panel surface */
+  --paper-deep:   #d3bf95;   /* divider, sunken area */
+  --paper-edge:   #b69d70;   /* deepest paper, near borders */
 
-  /* ── Brick / Maroon — the walls, the exit sign, the jukebox surround ─
-     This is the dominant hue in that room. Deep, saturated red-brown.
-  ────────────────────────────────────────────────────────────────────── */
-  --brick-faint:  rgba(160, 35, 12, 0.07);
-  --brick-dim:    rgba(165, 38, 14, 0.15);
-  --brick-soft:   rgba(172, 42, 16, 0.28);
-  --brick-mid:    rgba(180, 48, 18, 0.52);
-  --brick-strong: rgba(192, 55, 20, 0.80);
-  --brick-full:   #b83012;   /* pure brick — the wall color at full saturation */
-  --brick-deep:   #7a1a08;   /* maroon — the deep shadow side of the brick */
+  /* ── Ink / Espresso text ───────────────────────────────────────────── */
+  --ink-deep:  #1a110a;      /* primary text — pressed type */
+  --ink-mid:   #38240f;      /* secondary */
+  --ink-soft:  #6a4a26;      /* muted body */
+  --ink-faint: #8c6a3e;      /* labels, captions */
+  --ink-ghost: rgba(26, 17, 10, 0.32);
 
-  /* ── Copper / Ember — the light on the beer glass, the bar counter ───
-     That third panel in the image: pure molten copper. Orange-red heat.
-  ────────────────────────────────────────────────────────────────────── */
-  --copper-faint:  rgba(195, 80, 15, 0.07);
-  --copper-dim:    rgba(200, 88, 18, 0.16);
-  --copper-soft:   rgba(210, 98, 22, 0.30);
-  --copper-mid:    rgba(220, 110, 28, 0.58);
-  --copper-strong: rgba(235, 125, 35, 0.85);
-  --copper-full:   #d4641a;   /* the beer glass lit from inside */
-  --copper-hot:    #e8781e;   /* the hottest point of the light source */
+  /* ── Bourbon Red — the label color ─────────────────────────────────── */
+  --red-blood: #6b1010;      /* deepest oxblood */
+  --red-deep:  #8a1818;      /* signature label red */
+  --red-base:  #a91e1e;      /* primary accent */
+  --red-bright:#c52a22;      /* punctuation red */
 
-  /* ── Amber / Whiskey — the backlit bottles, the warm spill ───────────
-     Deeper and more orange than a gold. This is Tennessee whiskey, not
-     a cocktail. It glows from within.
-  ────────────────────────────────────────────────────────────────────── */
-  --amber-faint:  rgba(190, 110, 14, 0.07);
-  --amber-dim:    rgba(198, 118, 18, 0.15);
-  --amber-soft:   rgba(208, 130, 22, 0.28);
-  --amber-mid:    rgba(218, 142, 30, 0.55);
-  --amber-strong: rgba(232, 158, 45, 0.84);
-  --amber-full:   #c47c14;   /* the Wild Turkey bottle backlit on the shelf */
+  /* ── Whiskey Gold ──────────────────────────────────────────────────── */
+  --gold-deep: #6b4612;
+  --gold-mid:  #9b7222;
+  --gold-warm: #b88830;
 
-  /* ── Cream / Parchment — the only near-light tone ────────────────────
-     Even this has red in it. Warm as candlelight.
-  ────────────────────────────────────────────────────────────────────── */
-  --cream-deep:   #c8a07a;   /* almost tan — aged wood in bar light */
-  --cream-mid:    #e0c090;   /* lampshade glow */
-  --cream-warm:   #f0d4a8;   /* candle halo */
-  --cream-pure:   #fae8c8;   /* the brightest point — never actually white */
+  /* ── Forest / pine — secondary accent for variety ──────────────────── */
+  --forest:    #2e4528;
+  --forest-mid:#43603a;
 
-  /* ── Text ─────────────────────────────────────────────────────────────
-     No cool whites. Everything has warmth bled into it.
-  ────────────────────────────────────────────────────────────────────── */
-  --text-primary:   #f0d8b0;   /* warm parchment */
-  --text-secondary: rgba(218, 178, 118, 0.80);
-  --text-muted:     rgba(175, 125, 78, 0.60);
-  --text-ghost:     rgba(135, 88, 50, 0.40);
-  --text-copper:    #d06018;   /* copper text — prices, callouts */
-  --text-amber:     #c07810;   /* amber text — subheadings, accents */
+  /* ── Borders (just darker paper) ───────────────────────────────────── */
+  --rule-faint:  rgba(26, 17, 10, 0.12);
+  --rule-soft:   rgba(26, 17, 10, 0.22);
+  --rule-strong: rgba(26, 17, 10, 0.45);
+  --rule-ink:    var(--ink-deep);
 
-  /* ── Borders ──────────────────────────────────────────────────────────*/
-  --border-hair:    rgba(150, 55, 18, 0.10);
-  --border-subtle:  rgba(160, 62, 20, 0.18);
-  --border-soft:    rgba(175, 72, 24, 0.30);
-  --border-mid:     rgba(192, 85, 28, 0.48);
-  --border-copper:  rgba(210, 105, 32, 0.32);
-  --border-amber:   rgba(198, 140, 28, 0.26);
+  /* ── Typography ────────────────────────────────────────────────────── */
+  --font-display: 'Abril Fatface', 'Bodoni 72', Georgia, serif;
+  --font-body:    'Lora', Georgia, 'Times New Roman', serif;
+  --font-mono:    'Special Elite', 'Courier New', monospace;
+  --font-script:  'Caveat', 'Brush Script MT', cursive;
 
-  /* ── Glows ────────────────────────────────────────────────────────────
-     These are the actual light sources in the image:
-     — A red neon/exit sign throwing crimson on surfaces
-     — The copper lamp above the bar counter
-     — The warm backlit bottle shelf
-     All have that characteristic double-layer: sharp halo + wide bleed.
-  ────────────────────────────────────────────────────────────────────── */
-  --glow-brick:
-    0 0  6px rgba(190, 50, 16, 0.55),
-    0 0 22px rgba(160, 35, 12, 0.30),
-    0 0 55px rgba(140, 25, 8,  0.14);
+  /* ── Layout ────────────────────────────────────────────────────────── */
+  --section-gap:   clamp(4.5rem, 9vw, 7.5rem);
+  --content-width: 1180px;
 
-  --glow-copper:
-    0 0  6px rgba(225, 115, 30, 0.58),
-    0 0 22px rgba(200, 88, 18, 0.28),
-    0 0 55px rgba(175, 65, 12, 0.14);
-
-  --glow-amber:
-    0 0  6px rgba(225, 155, 40, 0.50),
-    0 0 22px rgba(198, 128, 22, 0.24),
-    0 0 55px rgba(170, 100, 12, 0.12);
-
-  /* Large atmospheric blooms — for glow blobs and hero sections */
-  --glow-brick-xl:
-    0 0 100px rgba(175, 45, 14, 0.30),
-    0 0 220px rgba(150, 28, 8,  0.15);
-
-  --glow-copper-xl:
-    0 0 100px rgba(210, 100, 25, 0.28),
-    0 0 220px rgba(180, 70, 12, 0.14);
-
-  /* ── Neon / sign effects ──────────────────────────────────────────────
-     The exit sign in the image is that exact washed-out red-white.
-  ────────────────────────────────────────────────────────────────────── */
-  --neon-red:
-    0 0  3px rgba(255, 255, 255, 0.80),
-    0 0 10px rgba(255, 80,  50, 0.95),
-    0 0 22px rgba(220, 40,  20, 0.75),
-    0 0 55px rgba(185, 20,  10, 0.40);
-
-  --neon-copper:
-    0 0  3px rgba(255, 255, 255, 0.75),
-    0 0 10px rgba(245, 130, 40, 0.92),
-    0 0 22px rgba(215, 95,  22, 0.68),
-    0 0 55px rgba(180, 65,  12, 0.35);
-
-  /* ── Typography ───────────────────────────────────────────────────────*/
-  --font-display: 'Cormorant Garamond', 'Palatino Linotype', Georgia, serif;
-  --font-body:    'DM Sans', system-ui, sans-serif;
-
-  /* ── Layout ───────────────────────────────────────────────────────────*/
-  --section-gap:   clamp(5rem, 10vw, 9rem);
-  --content-width: 1200px;
-
-  /* ── Motion ───────────────────────────────────────────────────────────*/
+  /* ── Motion ────────────────────────────────────────────────────────── */
   --ease-out-expo: cubic-bezier(0.16, 1, 0.3, 1);
   --ease-in-out:   cubic-bezier(0.4, 0, 0.2, 1);
-  --ease-spring:   cubic-bezier(0.34, 1.56, 0.64, 1);
-  --ease-warm:     cubic-bezier(0.22, 0.8, 0.36, 1);
+  --t-fast: 160ms;
+  --t-mid:  300ms;
+  --t-slow: 520ms;
+
+  /* ── Legacy alias names (keep old pages from breaking) ─────────────── */
+  --bg-pit:        var(--paper-base);
+  --bg-base:       var(--paper-base);
+  --bg-surface:    var(--paper-warm);
+  --bg-raised:     var(--paper-bright);
+  --bg-highlight:  var(--paper-bright);
+  --bg-overlay:    rgba(236, 223, 193, 0.94);
+
+  --text-primary:   var(--ink-deep);
+  --text-secondary: var(--ink-mid);
+  --text-muted:     var(--ink-soft);
+  --text-ghost:     var(--ink-faint);
+  --text-amber:     var(--gold-deep);
+  --text-copper:    var(--red-deep);
+
+  --border-hair:    var(--rule-faint);
+  --border-subtle:  var(--rule-soft);
+  --border-soft:    var(--rule-strong);
+  --border-mid:     var(--rule-strong);
+  --border-copper:  var(--rule-strong);
+  --border-amber:   var(--rule-strong);
+
+  --copper-faint:  rgba(138, 24, 24, 0.06);
+  --copper-dim:    rgba(138, 24, 24, 0.12);
+  --copper-soft:   rgba(138, 24, 24, 0.22);
+  --copper-mid:    rgba(138, 24, 24, 0.45);
+  --copper-strong: var(--red-base);
+  --copper-full:   var(--red-deep);
+  --copper-hot:    var(--red-base);
+
+  --amber-faint:  rgba(155, 114, 34, 0.10);
+  --amber-dim:    rgba(155, 114, 34, 0.20);
+  --amber-soft:   rgba(155, 114, 34, 0.32);
+  --amber-mid:    var(--gold-mid);
+  --amber-strong: var(--gold-mid);
+  --amber-full:   var(--gold-deep);
+
+  --brick-faint:  rgba(138, 24, 24, 0.05);
+  --brick-dim:    rgba(138, 24, 24, 0.10);
+  --brick-soft:   rgba(138, 24, 24, 0.18);
+  --brick-mid:    rgba(138, 24, 24, 0.30);
+  --brick-strong: var(--red-base);
+  --brick-full:   var(--red-deep);
+  --brick-deep:   var(--red-blood);
+
+  --cream-deep:   var(--paper-bright);
+  --cream-mid:    var(--paper-bright);
+  --cream-warm:   var(--paper-bright);
+  --cream-pure:   #fbf3df;
+
+  --glow-brick:   none;
+  --glow-copper:  none;
+  --glow-amber:   none;
+  --glow-brick-xl:  none;
+  --glow-copper-xl: none;
+
+  --ease-warm:    var(--ease-out-expo);
+  --ease-spring:  cubic-bezier(0.34, 1.4, 0.64, 1);
 
   --t-instant: 80ms;
-  --t-fast:    160ms;
-  --t-mid:     300ms;
-  --t-slow:    520ms;
   --t-crawl:   900ms;
+
+  /* Legacy purple/amber tokens used by inner pages — remapped to the
+     cream/red palette so nothing renders with an undefined color. */
+  --purple-faint:  rgba(138, 24, 24, 0.05);
+  --purple-dim:    rgba(138, 24, 24, 0.10);
+  --purple-soft:   rgba(138, 24, 24, 0.20);
+  --purple-mid:    var(--red-deep);
+  --purple-bright: var(--red-base);
+  --bg-void:       var(--paper-warm);
+
+  --border-warm:   var(--rule-strong);
+
+  --amber-ember:   rgba(155, 114, 34, 0.14);
+  --amber-bright:  var(--gold-mid);
+  --amber-pure:    var(--gold-mid);
+
+  --glow-purple:   none;
+  --glow-amber-lg: none;
 }
 
 /* ═════════════════════════════════════════════════════════════════════════
@@ -176,83 +169,44 @@ html {
 
 body {
   font-family: var(--font-body);
-  background-color: var(--bg-base);
-  color: var(--text-primary);
-  line-height: 1.72;
+  background-color: var(--paper-base);
+  color: var(--ink-deep);
+  line-height: 1.7;
   min-height: 100vh;
   overflow-x: hidden;
   position: relative;
 }
 
 /* ═════════════════════════════════════════════════════════════════════════
-   LAYERED ATMOSPHERE
-   ─
-   Recreating the exact light environment from the image:
-   — A deep red wash from the left (jukebox / red wall glow)
-   — Molten copper bloom at center (the lamp / counter light)
-   — Warm amber from the right (the bottle shelf backlight)
-   — A low smoldering base that tints everything from below
-   — Film grain to sell the analog warmth
+   PAPER TEXTURE — aged, faintly mottled, with edge-burn vignette
 ═════════════════════════════════════════════════════════════════════════ */
 
-/* Layer 1 — the room's light sources */
+/* Layer 1 — soft warm vignette (paper edges aging) */
 body::before {
   content: '';
   position: fixed;
   inset: 0;
   background:
-    /* Left wall — deep red jukebox / brick glow */
-    radial-gradient(
-      ellipse 55% 80% at -8% 50%,
-      rgba(155, 32, 10, 0.28) 0%,
-      rgba(140, 25, 8,  0.12) 35%,
-      transparent 62%
-    ),
-    /* Center overhead — the copper lamp above the bar */
-    radial-gradient(
-      ellipse 60% 50% at 50% -5%,
-      rgba(200, 92, 18, 0.22) 0%,
-      rgba(180, 70, 12, 0.08) 40%,
-      transparent 65%
-    ),
-    /* Center bar counter — the hottest light in the room */
-    radial-gradient(
-      ellipse 45% 55% at 48% 40%,
-      rgba(210, 100, 22, 0.12) 0%,
-      transparent 55%
-    ),
-    /* Right — backlit bottle shelf amber */
-    radial-gradient(
-      ellipse 55% 70% at 108% 55%,
-      rgba(188, 115, 18, 0.20) 0%,
-      rgba(165, 88,  12, 0.08) 40%,
-      transparent 62%
-    ),
-    /* Floor/base — the smoldering low warmth everything sits on */
-    radial-gradient(
-      ellipse 100% 35% at 50% 110%,
-      rgba(145, 35, 8, 0.16) 0%,
-      rgba(125, 22, 5, 0.06) 50%,
-      transparent 72%
-    );
+    radial-gradient(ellipse 90% 75% at 50% 50%, transparent 55%, rgba(120, 80, 30, 0.10) 85%, rgba(80, 50, 20, 0.18) 100%),
+    radial-gradient(ellipse 60% 50% at 12% 8%, rgba(255, 240, 200, 0.20) 0%, transparent 65%);
   pointer-events: none;
   z-index: 0;
+  mix-blend-mode: multiply;
 }
 
-/* Layer 2 — analog film grain, warm noise */
+/* Layer 2 — paper grain (very subtle) */
 body::after {
   content: '';
   position: fixed;
   inset: 0;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.68' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)' opacity='1'/%3E%3C/svg%3E");
-  background-size: 200px 200px;
-  opacity: 0.042;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='g'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23g)' opacity='1'/%3E%3C/svg%3E");
+  background-size: 240px 240px;
+  opacity: 0.10;
+  mix-blend-mode: multiply;
   pointer-events: none;
   z-index: 0;
-  mix-blend-mode: overlay;
 }
 
-/* All content above the atmosphere */
 #__next, main, header, footer, section, nav, aside {
   position: relative;
   z-index: 1;
@@ -263,113 +217,112 @@ body::after {
 ═════════════════════════════════════════════════════════════════════════ */
 h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-display);
-  color: var(--text-primary);
-  line-height: 1.1;
-  letter-spacing: 0.015em;
-  font-weight: 600;
+  color: var(--ink-deep);
+  line-height: 1.05;
+  letter-spacing: -0.005em;
+  font-weight: 400;
 }
 
 h1 {
-  font-size: clamp(3rem, 7.5vw, 6.5rem);
-  font-weight: 700;
+  font-size: clamp(3rem, 9vw, 7rem);
+  line-height: 0.95;
   letter-spacing: -0.01em;
-  line-height: 1.0;
 }
-h2 { font-size: clamp(2.2rem, 5vw, 4rem);    font-weight: 600; }
-h3 { font-size: clamp(1.6rem, 3.2vw, 2.6rem); font-weight: 600; }
-h4 { font-size: clamp(1.2rem, 2.2vw, 1.75rem); font-weight: 500; }
-h5 { font-size: 1.25rem; font-weight: 500; }
-h6 { font-size: 1.05rem; font-weight: 500; }
+h2 { font-size: clamp(2.2rem, 5vw, 4rem); }
+h3 { font-size: clamp(1.6rem, 3.2vw, 2.4rem); }
+h4 { font-size: clamp(1.2rem, 2.2vw, 1.6rem); }
+h5 { font-size: 1.2rem; }
+h6 { font-size: 1.05rem; }
 
 p {
-  font-size: 1.0625rem;
-  color: var(--text-secondary);
-  line-height: 1.85;
-  font-weight: 300;
+  font-size: 1.05rem;
+  color: var(--ink-mid);
+  line-height: 1.78;
+  font-weight: 400;
   max-width: 68ch;
 }
 
-/* Eyebrow label */
-.eyebrow {
-  font-family: var(--font-body);
-  font-size: 0.65rem;
-  font-weight: 500;
-  letter-spacing: 0.35em;
+/* Eyebrow / label — typewriter all-caps */
+.eyebrow,
+.label-stamp {
+  font-family: var(--font-mono);
+  font-size: 0.72rem;
+  font-weight: 400;
+  letter-spacing: 0.28em;
   text-transform: uppercase;
-  color: var(--text-muted);
+  color: var(--ink-soft);
 }
 
-/* Italic — Cormorant's italic cut is made for this */
 em, .italic-accent {
   font-family: var(--font-display);
   font-style: italic;
   font-weight: 400;
-  color: var(--text-amber);
+  color: var(--red-deep);
 }
 
 strong {
-  font-weight: 500;
-  color: var(--text-primary);
+  font-weight: 700;
+  color: var(--ink-deep);
 }
 
-/* Drop cap for editorial openers */
+/* Drop cap */
 .drop-cap::first-letter {
   font-family: var(--font-display);
-  font-size: 4.5em;
-  font-weight: 700;
-  line-height: 0.75;
+  font-size: 4.2em;
+  font-weight: 400;
+  line-height: 0.78;
   float: left;
-  margin: 0.08em 0.12em 0 0;
-  color: var(--copper-full);
+  margin: 0.06em 0.14em 0 0;
+  color: var(--red-deep);
+}
+
+/* Script accent */
+.script {
+  font-family: var(--font-script);
+  font-weight: 700;
+  color: var(--red-deep);
 }
 
 /* ═════════════════════════════════════════════════════════════════════════
    LINKS
 ═════════════════════════════════════════════════════════════════════════ */
 a {
-  color: var(--amber-strong);
+  color: var(--red-deep);
   text-decoration: none;
-  transition:
-    color       var(--t-mid) var(--ease-in-out),
-    text-shadow var(--t-mid) var(--ease-in-out);
+  text-underline-offset: 4px;
+  text-decoration-thickness: 1px;
+  transition: color var(--t-mid) var(--ease-in-out);
 }
 
 a:hover {
-  color: var(--cream-warm);
-  text-shadow:
-    0 0 10px rgba(215, 105, 28, 0.65),
-    0 0 25px rgba(185, 72, 16, 0.30);
+  color: var(--red-bright);
+  text-decoration: underline;
 }
 
 a:focus-visible {
-  outline: 1.5px solid var(--copper-mid);
+  outline: 2px solid var(--red-deep);
   outline-offset: 3px;
-  border-radius: 3px;
+  border-radius: 2px;
 }
 
 /* ═════════════════════════════════════════════════════════════════════════
-   TEXT SELECTION
+   SELECTION & SCROLLBAR
 ═════════════════════════════════════════════════════════════════════════ */
 ::selection {
-  background: rgba(180, 48, 16, 0.42);
-  color: var(--cream-pure);
+  background: var(--red-deep);
+  color: var(--paper-bright);
 }
 ::-moz-selection {
-  background: rgba(180, 48, 16, 0.42);
-  color: var(--cream-pure);
+  background: var(--red-deep);
+  color: var(--paper-bright);
 }
 
-/* ═════════════════════════════════════════════════════════════════════════
-   SCROLLBAR — thin red-brown rail
-═════════════════════════════════════════════════════════════════════════ */
-::-webkit-scrollbar        { width: 5px; height: 5px; }
-::-webkit-scrollbar-track  { background: var(--bg-pit); }
+::-webkit-scrollbar        { width: 10px; height: 10px; }
+::-webkit-scrollbar-track  { background: var(--paper-deep); }
 ::-webkit-scrollbar-thumb  {
-  background: rgba(165, 48, 16, 0.38);
-  border-radius: 100px;
-}
-::-webkit-scrollbar-thumb:hover {
-  background: rgba(195, 68, 22, 0.58);
+  background: var(--ink-mid);
+  border: 2px solid var(--paper-deep);
+  border-radius: 0;
 }
 
 /* ═════════════════════════════════════════════════════════════════════════
@@ -387,180 +340,129 @@ a:focus-visible {
 }
 
 /* ═════════════════════════════════════════════════════════════════════════
-   SURFACE COMPONENTS
-   ─
-   Cards feel like surfaces inside that room — dark brick, worn wood,
-   everything stained by the red-amber light that fills every corner.
+   POSTER / PRINT COMPONENTS
 ═════════════════════════════════════════════════════════════════════════ */
 
-/* Base card */
+/* Notice card — like a posted saloon notice with double-rule border */
+.notice {
+  background: var(--paper-warm);
+  border: 1px solid var(--ink-deep);
+  box-shadow:
+    0 0 0 4px var(--paper-warm),
+    0 0 0 5px var(--ink-deep);
+  padding: 2rem;
+  position: relative;
+}
+
+/* Generic surface card */
 .card {
-  background: linear-gradient(
-    155deg,
-    rgba(30, 10, 4, 0.82) 0%,
-    rgba(20, 6, 2, 0.74) 100%
-  );
-  border: 1px solid var(--border-subtle);
-  border-radius: 8px;
-  backdrop-filter: blur(12px) saturate(130%);
-  -webkit-backdrop-filter: blur(12px) saturate(130%);
-  transition:
-    border-color var(--t-mid) var(--ease-warm),
-    box-shadow   var(--t-mid) var(--ease-warm),
-    background   var(--t-mid) var(--ease-warm);
+  background: var(--paper-warm);
+  border: 1px solid var(--rule-soft);
+  border-radius: 0;
+  transition: border-color var(--t-mid) var(--ease-in-out),
+              transform var(--t-mid) var(--ease-in-out);
 }
 
 .card:hover {
-  background: linear-gradient(
-    155deg,
-    rgba(40, 13, 5, 0.90) 0%,
-    rgba(28, 8, 2, 0.82) 100%
-  );
-  border-color: var(--border-soft);
-  box-shadow: var(--glow-brick);
+  border-color: var(--ink-deep);
+  transform: translateY(-2px);
 }
 
-/* Copper variant — lit from the lamp above */
-.card-copper {
-  border-color: var(--border-copper);
-}
-
-.card-copper:hover {
-  border-color: rgba(220, 110, 30, 0.48);
-  box-shadow: var(--glow-copper);
-}
+.card-copper { border-color: var(--rule-strong); }
+.card-copper:hover { border-color: var(--red-deep); }
 
 /* ═════════════════════════════════════════════════════════════════════════
-   BUTTONS
+   BUTTONS — stamped, no glow, ink-on-paper
 ═════════════════════════════════════════════════════════════════════════ */
 .btn {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 0.45rem;
-  font-family: var(--font-body);
-  font-size: 0.7rem;
-  font-weight: 500;
-  letter-spacing: 0.2em;
+  gap: 0.5rem;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 400;
+  letter-spacing: 0.22em;
   text-transform: uppercase;
-  border-radius: 3px;
-  padding: 0.8rem 2rem;
+  padding: 0.85rem 1.8rem;
   cursor: pointer;
   text-decoration: none;
-  border: none;
-  position: relative;
-  overflow: hidden;
-  transition:
-    transform    var(--t-fast) var(--ease-spring),
-    box-shadow   var(--t-mid)  var(--ease-warm),
-    background   var(--t-mid)  var(--ease-in-out),
-    border-color var(--t-mid)  var(--ease-in-out),
-    color        var(--t-mid)  var(--ease-in-out);
+  border: 1px solid var(--ink-deep);
+  border-radius: 0;
+  background: transparent;
+  color: var(--ink-deep);
+  transition: background var(--t-mid) var(--ease-in-out),
+              color var(--t-mid) var(--ease-in-out),
+              transform var(--t-fast) var(--ease-in-out);
 }
 
-/* Shimmer — light raking across a brass rail */
-.btn::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(
-    110deg,
-    transparent 30%,
-    rgba(255, 210, 150, 0.10) 50%,
-    transparent 70%
-  );
-  transform: translateX(-100%);
-  transition: transform var(--t-slow) var(--ease-out-expo);
+.btn:hover {
+  background: var(--ink-deep);
+  color: var(--paper-bright);
 }
+.btn:active { transform: translateY(1px); }
 
-.btn:hover::before {
-  transform: translateX(100%);
-}
-
-/* Primary — the red, the fire, the call */
 .btn-primary {
-  background: linear-gradient(
-    145deg,
-    #8c1e0a 0%,
-    #b02c12 45%,
-    #9a2210 100%
-  );
-  color: var(--cream-warm);
-  box-shadow:
-    0 1px 0 rgba(255, 160, 100, 0.10) inset,
-    0 4px 24px rgba(145, 30, 10, 0.45);
+  background: var(--red-deep);
+  border-color: var(--red-deep);
+  color: var(--paper-bright);
 }
-
 .btn-primary:hover {
-  transform: translateY(-2px);
-  background: linear-gradient(
-    145deg,
-    #a02410 0%,
-    #cc3518 45%,
-    #b42c14 100%
-  );
-  box-shadow:
-    0 1px 0 rgba(255, 160, 100, 0.12) inset,
-    0 8px 36px rgba(175, 42, 14, 0.60),
-    0 0 70px rgba(145, 28, 8,  0.22);
+  background: var(--red-blood);
+  border-color: var(--red-blood);
   color: var(--cream-pure);
 }
 
-.btn-primary:active {
-  transform: translateY(0);
-  box-shadow: 0 2px 14px rgba(145, 30, 10, 0.40);
-}
-
-/* Secondary — copper outline, the bottle label style */
 .btn-secondary {
   background: transparent;
-  color: var(--copper-strong);
-  border: 1px solid var(--border-copper);
+  color: var(--red-deep);
+  border-color: var(--red-deep);
 }
-
 .btn-secondary:hover {
-  background: rgba(210, 98, 22, 0.09);
-  border-color: var(--copper-mid);
-  color: var(--cream-warm);
-  box-shadow: var(--glow-copper);
+  background: var(--red-deep);
+  color: var(--paper-bright);
 }
 
-/* Ghost — barely-there */
 .btn-ghost {
   background: transparent;
-  color: var(--text-muted);
-  border: 1px solid var(--border-hair);
+  color: var(--ink-deep);
+  border: 1px solid var(--rule-soft);
 }
-
 .btn-ghost:hover {
-  background: var(--brick-faint);
-  border-color: var(--border-soft);
-  color: var(--text-secondary);
-  box-shadow: var(--glow-brick);
+  background: var(--paper-warm);
+  border-color: var(--ink-deep);
+  color: var(--ink-deep);
 }
 
 /* ═════════════════════════════════════════════════════════════════════════
-   DIVIDERS
+   DIVIDERS — saloon-style
 ═════════════════════════════════════════════════════════════════════════ */
 .divider {
   height: 1px;
-  background: linear-gradient(
-    90deg,
-    transparent,
-    var(--border-subtle) 20%,
-    var(--border-subtle) 80%,
-    transparent
-  );
+  background: var(--ink-deep);
   border: none;
+  opacity: 0.5;
 }
 
-/* Ornate divider with fading rule lines */
+/* Double rule with star — for major section breaks */
+.divider-double {
+  position: relative;
+  height: 8px;
+  border-top: 1px solid var(--ink-deep);
+  border-bottom: 1px solid var(--ink-deep);
+}
+
+/* Ornate divider — ─── ★ ─── */
 .divider-ornate {
   display: flex;
   align-items: center;
-  gap: 1.2rem;
-  height: auto;
+  justify-content: center;
+  gap: 1rem;
   background: none;
+  height: auto;
+  color: var(--ink-deep);
+  font-family: var(--font-display);
+  font-size: 1.2rem;
 }
 
 .divider-ornate::before,
@@ -568,112 +470,49 @@ a:focus-visible {
   content: '';
   flex: 1;
   height: 1px;
-  background: linear-gradient(90deg, transparent, var(--border-copper) 60%);
+  background: var(--ink-deep);
+  opacity: 0.55;
+  max-width: 220px;
 }
 
-.divider-ornate::after {
-  background: linear-gradient(90deg, var(--border-copper) 40%, transparent);
-}
-
-/* ═════════════════════════════════════════════════════════════════════════
-   GLOW BLOBS
-   For decorative atmosphere pools — position absolutely, size 300–600px.
-═════════════════════════════════════════════════════════════════════════ */
-.glow-blob {
-  position: absolute;
-  border-radius: 50%;
-  pointer-events: none;
-  filter: blur(80px);
-}
-
-.glow-blob-brick   { background: rgba(165, 35, 10, 0.25);  }
-.glow-blob-copper  { background: rgba(205, 95, 20, 0.22);  }
-.glow-blob-amber   { background: rgba(188, 118, 16, 0.18); }
-.glow-blob-maroon  { background: rgba(110, 18, 5,  0.30);  }
-
-/* ═════════════════════════════════════════════════════════════════════════
-   NEON / SIGN EFFECTS
-   The exit sign in the image. One per page.
-═════════════════════════════════════════════════════════════════════════ */
-.neon-red {
-  color: #ff6040;
-  text-shadow: var(--neon-red);
-}
-
-.neon-copper {
-  color: #f09040;
-  text-shadow: var(--neon-copper);
-}
-
-@keyframes neon-flicker {
-  0%, 89%, 91%, 93%, 100% { opacity: 1; }
-  90%  { opacity: 0.35; }
-  92%  { opacity: 0.75; }
-  94%  { opacity: 0.5;  }
-  95%  { opacity: 1;    }
-}
-
-.neon-flicker {
-  animation: neon-flicker 7s infinite var(--ease-in-out);
+/* Star divider — pure decoration */
+.star-row {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  color: var(--red-deep);
+  font-size: 0.85rem;
+  letter-spacing: 0.4em;
 }
 
 /* ═════════════════════════════════════════════════════════════════════════
-   GRADIENT TEXT UTILITIES
-═════════════════════════════════════════════════════════════════════════ */
-
-/* The copper beer glass — that molten orange-red center */
-.text-gradient-copper {
-  background: linear-gradient(135deg, #a02410 0%, #d4601a 45%, #e07820 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-/* The whiskey shelf — amber glow */
-.text-gradient-pour {
-  background: linear-gradient(135deg, #b86010 0%, #d8900e 50%, #c47010 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-/* Warm parchment — for hero display type */
-.text-gradient-parchment {
-  background: linear-gradient(160deg, var(--cream-pure) 0%, var(--cream-mid) 100%);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-clip: text;
-}
-
-/* ═════════════════════════════════════════════════════════════════════════
-   HOVER GLOW UTILITIES
-═════════════════════════════════════════════════════════════════════════ */
-.hover-glow-brick,
-.hover-glow-copper,
-.hover-glow-amber {
-  transition: box-shadow var(--t-mid) var(--ease-warm);
-}
-
-.hover-glow-brick:hover  { box-shadow: var(--glow-brick);  }
-.hover-glow-copper:hover { box-shadow: var(--glow-copper); }
-.hover-glow-amber:hover  { box-shadow: var(--glow-amber);  }
-
-/* ═════════════════════════════════════════════════════════════════════════
-   MEDIA
+   IMAGE TREATMENTS — duotone + keyline border
 ═════════════════════════════════════════════════════════════════════════ */
 img, video {
   max-width: 100%;
   display: block;
 }
 
-/* Warm film treatment on images — matches the photo aesthetic */
-.img-warm {
-  filter: sepia(0.25) saturate(1.15) brightness(0.92) hue-rotate(-8deg);
+/* Sepia / aged photograph */
+.img-warm,
+.img-vintage {
+  filter: sepia(0.50) saturate(0.95) contrast(1.05) brightness(0.96);
   transition: filter var(--t-slow) var(--ease-in-out);
 }
 
 .img-warm:hover {
-  filter: sepia(0.12) saturate(1.25) brightness(0.98) hue-rotate(-4deg);
+  filter: sepia(0.30) saturate(1.05) contrast(1.05) brightness(1);
+}
+
+/* Keyline-bordered photo plate, like a magazine print */
+.plate {
+  background: var(--paper-bright);
+  padding: 10px;
+  border: 1px solid var(--ink-deep);
+  box-shadow:
+    0 0 0 1px var(--paper-bright) inset,
+    0 6px 18px rgba(40, 22, 8, 0.18);
 }
 
 /* ═════════════════════════════════════════════════════════════════════════
@@ -682,9 +521,9 @@ img, video {
 :focus { outline: none; }
 
 :focus-visible {
-  outline: 1.5px solid var(--copper-mid);
+  outline: 2px solid var(--red-deep);
   outline-offset: 3px;
-  border-radius: 3px;
+  border-radius: 0;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -697,7 +536,24 @@ img, video {
 }
 
 /* ═════════════════════════════════════════════════════════════════════════
-   TAILWIND BASE LAYER
+   GLOW UTILITIES — kept as no-ops so legacy pages don't break
+═════════════════════════════════════════════════════════════════════════ */
+.hover-glow-brick:hover,
+.hover-glow-copper:hover,
+.hover-glow-amber:hover { box-shadow: none; }
+
+.glow-blob { display: none; }
+
+.text-gradient-copper,
+.text-gradient-pour,
+.text-gradient-parchment {
+  color: var(--red-deep);
+  background: none;
+  -webkit-text-fill-color: currentColor;
+}
+
+/* ═════════════════════════════════════════════════════════════════════════
+   TAILWIND BASE
 ═════════════════════════════════════════════════════════════════════════ */
 @layer base {
   body {
