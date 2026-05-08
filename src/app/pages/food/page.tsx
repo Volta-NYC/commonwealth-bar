@@ -4,10 +4,10 @@ import { useEffect, useRef, useState } from "react"
 import { pageStyles } from "@/lib/components/pageStyles"
 
 const pies = [
-  { name: "Shepherd's Pie", desc: "Slow-braised lamb mince, carrots, peas, and onion under a blanket of buttery mashed potato. The one that started it all.", tag: "Meat", color: "#c87830", icon: "🥩" },
-  { name: "Chicken & Vegetable", desc: "Free-range chicken, seasonal vegetables, and a rich gravy in a golden shortcrust pastry. Comfort in every bite.", tag: "Meat", color: "#d4a030", icon: "🍗" },
-  { name: "Southwestern Vegetable", desc: "Black beans, roasted corn, peppers, and spiced tomato. Bold, smoky, and completely satisfying.", tag: "Vegetarian", color: "#b85020", icon: "🌶️" },
-  { name: "Veggie Curry", desc: "Chickpeas, sweet potato, and spinach in a fragrant yellow curry. Warm spice, rich depth, zero regret.", tag: "Vegan", color: "#d09020", icon: "🍛" },
+  { name: "Shepherd's Pie", desc: "Slow-braised lamb mince, carrots, peas, and onion under a blanket of buttery mashed potato. The one that started it all.", tag: "Meat", color: "#c87830", icon: "I" },
+  { name: "Chicken & Vegetable", desc: "Free-range chicken, seasonal vegetables, and a rich gravy in a golden shortcrust pastry. Comfort in every bite.", tag: "Meat", color: "#d4a030", icon: "II" },
+  { name: "Southwestern Vegetable", desc: "Black beans, roasted corn, peppers, and spiced tomato. Bold, smoky, and completely satisfying.", tag: "Vegetarian", color: "#b85020", icon: "III" },
+  { name: "Veggie Curry", desc: "Chickpeas, sweet potato, and spinach in a fragrant yellow curry. Warm spice, rich depth, zero regret.", tag: "Vegan", color: "#d09020", icon: "IV" },
 ]
 
 const deliveryNeighborhoods = [
@@ -51,7 +51,7 @@ export default function FoodPage() {
           background: radial-gradient(circle, var(--amber-ember) 0%, transparent 70%);
           pointer-events: none;
         }
-        .partner-callout-icon { font-size: 3rem; flex-shrink: 0; position: relative; z-index: 1; }
+        .partner-callout-icon { font-family: var(--font-display); font-size: 3rem; line-height: 1; color: var(--red-deep); flex-shrink: 0; position: relative; z-index: 1; }
         .partner-callout-content { position: relative; z-index: 1; }
         .partner-callout-label { font-size: 9px; letter-spacing: 0.3em; text-transform: uppercase; color: var(--amber-mid); font-weight: 600; margin-bottom: 5px; font-family: var(--font-body); }
         .partner-callout-title { font-family: var(--font-display); font-size: 1.2rem; font-weight: 700; color: var(--text-primary); margin-bottom: 4px; }
@@ -68,7 +68,7 @@ export default function FoodPage() {
         }
         .pie-card:hover { transform: translateY(-4px); border-color: var(--border-soft); box-shadow: var(--glow-purple); }
         .pie-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem; margin-bottom: 1rem; }
-        .pie-icon { font-size: 2.2rem; line-height: 1; }
+        .pie-icon { font-family: var(--font-display); font-size: 1.6rem; line-height: 1; color: var(--red-deep); letter-spacing: 0.05em; }
         .pie-tag { font-size: 8.5px; letter-spacing: 0.18em; text-transform: uppercase; font-weight: 600; padding: 4px 10px; border-radius: 100px; font-family: var(--font-body); border: 1px solid; }
         .pie-tag.meat        { color: rgba(220,140,60,0.8); border-color: rgba(220,140,60,0.2); background: rgba(220,140,60,0.06); }
         .pie-tag.vegetarian  { color: rgba(100,200,100,0.8); border-color: rgba(100,200,100,0.2); background: rgba(100,200,100,0.06); }
@@ -91,7 +91,7 @@ export default function FoodPage() {
           content: ''; position: absolute; top: -60px; left: 50%; transform: translateX(-50%);
           width: 300px; height: 300px; background: radial-gradient(circle, var(--amber-ember) 0%, transparent 70%); pointer-events: none;
         }
-        .cheese-emoji { font-size: 4.5rem; position: relative; z-index: 1; animation: gentlePulse 4s ease-in-out infinite; }
+        .cheese-emoji { font-family: var(--font-display); font-size: 4rem; color: var(--red-deep); line-height: 1; position: relative; z-index: 1; }
         .cheese-visual-label { font-family: var(--font-display); font-size: 1.4rem; font-weight: 700; color: var(--text-primary); position: relative; z-index: 1; }
         .cheese-visual-sub { font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; color: var(--amber-mid); font-weight: 600; font-family: var(--font-body); position: relative; z-index: 1; }
         .cheese-badge-row { display: flex; gap: 0.6rem; flex-wrap: wrap; justify-content: center; position: relative; z-index: 1; margin-top: 0.5rem; }
@@ -122,7 +122,7 @@ export default function FoodPage() {
           padding: 2rem; background: var(--purple-dim); border: 1px solid var(--border-subtle);
           border-radius: 12px; margin-top: 3rem; flex-wrap: wrap; text-align: center;
         }
-        .popcorn-emoji { font-size: 2.5rem; animation: gentlePulse 5s ease-in-out infinite; }
+        .popcorn-emoji { font-size: 1.4rem; color: var(--red-deep); line-height: 1; }
         .popcorn-text { font-family: var(--font-display); font-style: italic; font-size: 1.1rem; color: var(--text-muted); }
         .popcorn-text strong { color: var(--text-primary); font-style: normal; }
 
@@ -163,7 +163,7 @@ export default function FoodPage() {
           <h2 className={`section-title fade-in d1 ${vis("pies") ? "visible" : ""}`}>Dub Pies from <em>The Pie Shop</em></h2>
           <p className={`section-body fade-in d2 ${vis("pies") ? "visible" : ""}`}>Our friends at Down Under Bakery in Brooklyn have been making these since before it was cool. Hand-crimped, hot out of the oven, and available every single night.</p>
           <div className={`partner-callout fade-in d2 ${vis("pies") ? "visible" : ""}`}>
-            <span className="partner-callout-icon">🥧</span>
+            <span className="partner-callout-icon">§</span>
             <div className="partner-callout-content">
               <div className="partner-callout-label">Our Partner</div>
               <div className="partner-callout-title">The Pie Shop / Down Under Bakery — Brooklyn, NY</div>
@@ -193,7 +193,7 @@ export default function FoodPage() {
         <div className="section-wrap">
           <div className="cheese-feature">
             <div className={`cheese-visual fade-in ${vis("cheese") ? "visible" : ""}`}>
-              <span className="cheese-emoji">🧀</span>
+              <span className="cheese-emoji">★</span>
               <div className="cheese-visual-label">Kentucky Beer Cheese</div>
               <div className="cheese-visual-sub">Housemade — Every Night</div>
               <div className="cheese-badge-row">
@@ -234,9 +234,9 @@ export default function FoodPage() {
             ))}
           </div>
           <div className={`popcorn-strip fade-in d4 ${vis("delivery") ? "visible" : ""}`}>
-            <span className="popcorn-emoji">🍿</span>
+            <span className="popcorn-emoji">★</span>
             <p className="popcorn-text">And yes — <strong>free popcorn</strong> is always out. No strings attached.</p>
-            <span className="popcorn-emoji">🍿</span>
+            <span className="popcorn-emoji">★</span>
           </div>
         </div>
       </section>

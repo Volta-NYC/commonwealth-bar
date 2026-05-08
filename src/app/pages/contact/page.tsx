@@ -164,20 +164,21 @@ export default function ContactPage() {
         .contact-card:hover .contact-cta { color: var(--text-primary); }
 
         /* ── MAP ── */
-        .map-wrap { position: relative; border-radius: 16px; overflow: hidden; border: 1px solid var(--border-subtle); height: 420px; background: var(--bg-surface); }
-        .map-wrap iframe { width: 100%; height: 100%; border: none; filter: invert(90%) hue-rotate(180deg) saturate(0.7) brightness(0.85); opacity: 0.75; }
-        .map-overlay-card { position: absolute; bottom: 1.5rem; left: 1.5rem; background: rgba(8,4,22,0.92); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); border: 1px solid var(--border-soft); border-radius: 12px; padding: 1.25rem 1.5rem; z-index: 1; max-width: 240px; }
-        .map-overlay-name { font-family: var(--font-display); font-size: 1rem; font-weight: 700; color: var(--text-primary); margin-bottom: 4px; }
-        .map-overlay-address { font-size: 11.5px; color: var(--text-muted); line-height: 1.55; font-weight: 300; }
-        .map-overlay-link { display: inline-flex; align-items: center; gap: 0.4rem; font-size: 10px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--amber-mid); font-weight: 600; margin-top: 0.75rem; text-decoration: none; transition: color var(--t-mid); }
-        .map-overlay-link:hover { color: var(--amber-bright); }
+        .map-wrap { position: relative; border-radius: 0; overflow: hidden; border: 1px solid var(--ink-deep); height: 460px; background: var(--paper-warm); }
+        .map-wrap iframe { width: 100%; height: 100%; border: none; filter: sepia(0.18) saturate(0.85); }
+        .map-overlay-card { position: absolute; bottom: 1.5rem; left: 1.5rem; background: var(--paper-bright); border: 1px solid var(--ink-deep); border-radius: 0; padding: 1.4rem 1.6rem 1.5rem; z-index: 1; max-width: 280px; }
+        .map-overlay-card::before { content: ""; position: absolute; inset: 5px; border: 1px solid var(--ink-deep); pointer-events: none; opacity: 0.35; }
+        .map-overlay-name { font-family: var(--font-display); font-size: 1.4rem; font-weight: 400; color: var(--ink-deep); margin-bottom: 0.5rem; line-height: 1.05; letter-spacing: -0.005em; }
+        .map-overlay-address { font-family: var(--font-body); font-size: 0.92rem; color: var(--ink-mid); line-height: 1.55; font-style: italic; }
+        .map-overlay-link { display: inline-flex; align-items: center; gap: 0.45rem; font-family: var(--font-mono); font-size: 0.7rem; letter-spacing: 0.24em; text-transform: uppercase; color: var(--red-deep); font-weight: 400; margin-top: 1rem; padding-top: 0.85rem; border-top: 1px dashed var(--rule-soft); text-decoration: none; transition: color var(--t-fast); }
+        .map-overlay-link:hover { color: var(--red-blood); }
 
         /* ── TRANSIT ── */
         .transit-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.25rem; margin-top: 3rem; }
         @media (max-width: 700px) { .transit-grid { grid-template-columns: 1fr; } }
         .transit-card { background: var(--bg-surface); border: 1px solid var(--border-subtle); border-radius: 12px; padding: 1.5rem; transition: border-color var(--t-mid); }
         .transit-card:hover { border-color: var(--border-soft); }
-        .transit-icon { font-size: 1.8rem; margin-bottom: 0.75rem; }
+        .transit-icon { font-family: var(--font-display); font-size: 1.6rem; color: var(--red-deep); margin-bottom: 0.75rem; letter-spacing: 0.05em; }
         .transit-type { font-size: 9px; letter-spacing: 0.25em; text-transform: uppercase; color: var(--purple-mid); font-weight: 600; margin-bottom: 5px; font-family: var(--font-body); }
         .transit-name { font-family: var(--font-display); font-size: 1rem; font-weight: 700; color: var(--text-primary); margin-bottom: 4px; }
         .transit-desc { font-size: 12px; color: var(--text-muted); line-height: 1.6; font-weight: 300; }
@@ -237,7 +238,7 @@ export default function ContactPage() {
               </div>
               <div className={`side-card fade-in d4 ${vis("hours") ? "visible" : ""}`}>
                 <div className="side-card-eyebrow">Weather Permitting</div>
-                <div className="side-card-title">🌿 The Patio</div>
+                <div className="side-card-title">The Patio</div>
                 <p className="side-card-body">Our backyard oasis. Park benches, open sky, and a cold one in hand.</p>
                 <div className="patio-rows">
                   {patioHours.map((p) => (
@@ -305,9 +306,9 @@ export default function ContactPage() {
           <h2 className={`section-title fade-in d1 ${vis("transit") ? "visible" : ""}`}>How to <em>Arrive</em></h2>
           <div className="transit-grid">
             {[
-              { icon: "🚇", type: "Subway", name: "F / G Train", desc: "Take the F or G to 4th Ave – 9th Street. Walk 5 minutes up 5th Avenue to 12th Street." },
-              { icon: "🚌", type: "Bus", name: "B63 / B69", desc: "The B63 runs along 5th Avenue and stops at 12th Street — drops you right at the door." },
-              { icon: "🚗", type: "Car / Rideshare", name: "Corner of 5th & 12th", desc: "Street parking available on 12th Street and surrounding blocks. Rideshare drop-off directly in front." },
+              { icon: "I", type: "Subway", name: "F / G Train", desc: "Take the F or G to 4th Ave – 9th Street. Walk 5 minutes up 5th Avenue to 12th Street." },
+              { icon: "II", type: "Bus", name: "B63 / B69", desc: "The B63 runs along 5th Avenue and stops at 12th Street — drops you right at the door." },
+              { icon: "III", type: "Car / Rideshare", name: "Corner of 5th & 12th", desc: "Street parking available on 12th Street and surrounding blocks. Rideshare drop-off directly in front." },
             ].map((t, i) => (
               <div key={t.name} className={`transit-card fade-in d${i + 1} ${vis("transit") ? "visible" : ""}`}>
                 <div className="transit-icon">{t.icon}</div>
