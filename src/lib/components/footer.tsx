@@ -168,6 +168,12 @@ export default function Footer() {
           color: var(--red-deep);
           border-color: var(--red-deep);
         }
+        .ft-credit a,
+        .ft-credit a:hover {
+          color: #82c341;
+          text-decoration: none;
+          border-bottom: none;
+        }
       `}</style>
 
       <footer className="ft-root">
@@ -223,6 +229,12 @@ export default function Footer() {
                 <a href={s.href} target="_blank" rel="noreferrer">{s.label}</a>
               </span>
             ))}
+          </span>
+          <span className="ft-credit">
+            Made by{" "}
+            <a href="https://voltanyc.org/" target="_blank" rel="noreferrer">
+              Volta
+            </a>
           </span>
         </div>
       </footer>
